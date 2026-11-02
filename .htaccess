@@ -1,0 +1,40 @@
+# ============================================
+#  Kişisel Blog — Apache ayarları
+#  (XAMPP / Apache 2.4)
+# ============================================
+
+# Dizin listelemesini kapat
+Options -Indexes
+
+# Varsayılan dosya
+DirectoryIndex index.php index.html
+
+# UTF-8
+AddDefaultCharset UTF-8
+
+# Hassas dosyalara doğrudan erişimi engelle
+<FilesMatch "^(config\.local\.php|composer\.(json|lock)|.*\.sql|.*\.log|README\.md)$">
+    Require all denied
+</FilesMatch>
+
+# config ve database klasörlerini tamamen kapat
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteRule ^config/ - [F,L]
+    RewriteRule ^database/ - [F,L]
+    RewriteRule ^includes/ - [F,L]
+</IfModule>
+
+# Hata sayfası
+ErrorDocument 404 /kisisel-blog/404.php
+
+# Statik dosyalar için önbellek
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 7 days"
+    ExpiresByType application/javascript "access plus 7 days"
+    ExpiresByType image/png "access plus 30 days"
+    ExpiresByType image/jpeg "access plus 30 days"
+    ExpiresByType image/svg+xml "access plus 30 days"
+</IfModule>

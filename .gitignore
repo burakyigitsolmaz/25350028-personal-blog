@@ -1,0 +1,13 @@
+# Veritabanı yedekleri
+database/*.bak
+
+# Ortam ayarları (gerçek değerler)
+.env
+config/config.local.php
+
+# PHP araç çıktıları
+vendor/
+
+# İşletim sistemi
+.DS_Store
+Thumbs.db
